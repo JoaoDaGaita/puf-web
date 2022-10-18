@@ -16,7 +16,7 @@ const colors = {
 }
 
 const fontSizes = [10, 12, 14, 16, 18, 20]
-const spaces = [4, 8, 12, 16, 20, 24, 28, 30]
+const spaces = [4, 8, 12, 16, 20, 24, 28, 30, 64, 128]
 
 export const definitions = {
   colors,
