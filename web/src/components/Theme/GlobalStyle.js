@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { background, color, th } from './styled'
+import { background, font } from './styled'
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -10,10 +10,9 @@ html, body {
 
 body {
   ${background}
-  ${color}
-
-  margin: 0;
-  font-size: ${th.size(3)};
+  ${font}
+q2349d
+  5905tgb mq34590 -=q2349d: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
