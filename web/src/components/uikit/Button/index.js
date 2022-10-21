@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { th } from '~/components/Theme/styled'
+import { th, margin } from '~/components/Theme/styled'
 import { FidgetSpinner } from 'react-loader-spinner'
 
 const StyledButton = styled('button')`
@@ -15,10 +15,11 @@ const StyledButton = styled('button')`
   outline: none;
 
   ${({ disabled }) => disabled && 'opacity: 0.5;'}
+  ${margin}
 `
 
-export const Button = ({ disabled, loading, children }) => (
-  <StyledButton disabled={disabled || loading}>
+export const Button = ({ disabled, loading, children, ...props }) => (
+  <StyledButton {...props} disabled={disabled || loading}>
     {loading ? (
       <FidgetSpinner
         visible={true}

@@ -2,8 +2,18 @@ import * as React from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
+import styled from 'styled-components'
 
-import { Field, Box, Button } from '~/components'
+import { Field, Box, Button, font, margin } from '~/components'
+
+const Title = styled('h2')`
+  ${font}
+`
+const Link = styled('a')`
+  text-decoration: none;
+  ${font}
+  ${margin}
+`
 
 const validationSchema = yup.object().shape({
   name: yup.string().required('Campo nome obrigatório'),
@@ -46,6 +56,8 @@ export const SignUp = () => {
   return (
     <Box flex={1} flexbox="column" center>
       <Box style={{ width: 380 }}>
+        <Title textAlign="center">CADASTRO</Title>
+
         <form onSubmit={handleSubmit}>
           <Field
             type="text"
@@ -78,10 +90,19 @@ export const SignUp = () => {
             disable={isSubmitting}
             error={touched.password && errors.password}
           />
-          <Box flexbox center>
-            <Button type="submit" disable={isSubmitting} loading={isSubmitting}>
+          <Box flexbox="column" center>
+            <Button
+              type="submit"
+              disable={isSubmitting}
+              loading={isSubmitting}
+              m={1}
+            >
               Registrar
             </Button>
+
+            <Link href="#" color="gray" fontWeight="bold" fontSize={1} m={1}>
+              Já sou cadastrado
+            </Link>
           </Box>
         </form>
       </Box>

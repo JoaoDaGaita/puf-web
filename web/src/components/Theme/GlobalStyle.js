@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components'
 import { background, font } from './styled'
 
 export const GlobalStyle = createGlobalStyle`
-
 html, body {
   height: 100%;
 }
@@ -13,7 +12,7 @@ body {
   ${font}
 q2349d
   5905tgb mq34590 -=q2349d: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;

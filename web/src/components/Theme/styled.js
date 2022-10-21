@@ -1,3 +1,5 @@
+const addIfExists = (prop, value) => (prop ? value : '')
+
 const theme = prop => value => props => props.theme[prop][value] || value
 
 export const th = {
@@ -15,24 +17,30 @@ export const flexbox = props => {
   const alignItems = props.alignItems || (props.center && 'center')
 
   return `
-    ${(props.flexbox && 'display: flex;') || ''}
-    ${(direction && `flex-direction: ${direction};`) || ''}
-    ${(props.flex && `flex: ${props.flex};`) || ''}
-    ${(justifyContent && `justify-content: ${justifyContent};`) || ''}
-    ${(alignItems && `align-items: ${alignItems};`) || ''}
+    ${addIfExists(props.flex, `flex: ${props.flex};`)}
+    ${addIfExists(props.flexbox, 'display: flex;')}
+    ${addIfExists(direction, `flex-direction: ${direction};`)}
+    ${addIfExists(justifyContent, `justify-content: ${justifyContent};`)}
+    ${addIfExists(alignItems, `align-items: ${alignItems};`)}
   `
 }
 
 export const font = props => {
-  const color =
-    props.color && `color: ${props.theme.colors[props.color] || props.color};`
-  const size =
-    Object.prototype.hasOwnProperty.call(props, 'fontSize') &&
-    props.fontSize &&
+  const color = addIfExists(
+    props.color,
+    `color: ${props.theme.colors[props.color] || props.color};`
+  )
+
+  const size = addIfExists(
+    Object.prototype.hasOwnProperty.call(props, 'fontSize'),
     `font-size: ${props.theme.fontSizes[props.fontSize]}px;`
+  )
+
   return `
-    ${color ? color : ''}
-    ${size ? size : ''}
+    ${addIfExists(color, color)}
+    ${addIfExists(size, size)}
+    ${addIfExists(props.textAlign, `text-align: ${props.textAlign}`)}
+    ${addIfExists(props.fontWeight, `font-weight: ${props.fontWeight}`)}
   `
 }
 
