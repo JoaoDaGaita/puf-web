@@ -1,8 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+
 import { Form } from './Form'
 import { Box, font } from '~/components'
+
+import { useAuth } from '~/components/modules'
 
 const Title = styled('h2')`
   ${font}
@@ -14,14 +17,16 @@ const CenteredBox = ({ children, ...props }) => (
   </Box>
 )
 
-export const Login = ({ onSuccess }) => {
+export const Login = () => {
+  const [, { login: setAuth }] = useAuth()
+
   const onSubmit = async values => {
     try {
       const res = await axios.get('http://localhost:9901/login', {
         auth: values,
       })
 
-      onSuccess(res.data)
+      setAuth(res.data)
     } catch (error) {
       console.log(error)
     }

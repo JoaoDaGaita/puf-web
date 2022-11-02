@@ -4,7 +4,13 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { Field, Box, Button, font, margin } from '~/components'
 import styled from 'styled-components'
+import { Link as RouterLink } from 'react-router-dom'
 
+const Link = styled(RouterLink)`
+  text-decoration: none;
+  ${font}
+  ${margin}
+`
 const validationSchema = yup.object().shape({
   name: yup.string().required('Campo nome obrigatório'),
   email: yup
@@ -14,11 +20,6 @@ const validationSchema = yup.object().shape({
   password: yup.string().required('Campo password obrigatório'),
 })
 
-const Link = styled('a')`
-  text-decoration: none;
-  ${font}
-  ${margin}
-`
 export const Form = () => {
   const onSubmit = async values => {
     try {
@@ -89,7 +90,7 @@ export const Form = () => {
           Registrar
         </Button>
 
-        <Link href="#" color="gray" fontWeight="bold" fontSize={1} m={1}>
+        <Link to="/" color="gray" fontWeight="bold" fontSize={1} m={1}>
           Já sou cadastrado
         </Link>
       </Box>
