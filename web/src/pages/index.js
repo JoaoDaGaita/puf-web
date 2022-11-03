@@ -9,7 +9,7 @@ import { Dashboard } from './Dashboard'
 
 const AuthRoutes = () => (
   <Routes>
-    <Route path="/" element={<Login />} />
+    <Route path="/" exact element={<Login />} />
 
     <Route path="/signup" element={<SignUp />}></Route>
   </Routes>

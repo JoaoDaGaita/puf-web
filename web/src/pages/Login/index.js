@@ -25,7 +25,6 @@ export const Login = () => {
       const res = await axios.get('http://localhost:9901/login', {
         auth: values,
       })
-
       setAuth(res.data)
     } catch (error) {
       console.log(error)

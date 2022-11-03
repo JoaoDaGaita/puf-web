@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { useState, useEffect, createContext, useContext } from 'react'
 
-const AuthContext = createContext([{}, () => {}])
+const AuthContext = createContext([{}, () => ({})])
 
 export const useAuth = () => {
   const [state, setState] = useContext(AuthContext)
+
   const logout = () => setState(false)
   return [state, { login: setState, logout }]
 }
