@@ -44,6 +44,7 @@ export const Form = ({ onSubmit }) => {
         type="text"
         name="username"
         label="E-mail"
+        placeholder="Digite o seu e-mail"
         mb={3}
         value={values.username}
         onChange={handleChange}
@@ -55,6 +56,7 @@ export const Form = ({ onSubmit }) => {
         type="password"
         name="password"
         label="Senha"
+        placeholder="Digite a sua senha"
         mb={3}
         value={values.password}
         onChange={handleChange}

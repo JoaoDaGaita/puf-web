@@ -1,9 +1,22 @@
-const { alias } = require('react-app-rewire-alias')
+const path = require('path')
 
-module.exports = function override(config) {
-  alias({
-    '~': 'src',
-  })(config)
+module.exports = {
+  webpack: config => {
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        '~': path.resolve(__dirname, 'src'),
+      },
+    }
 
-  return config
+    return config
+  },
+
+  jest: config => ({
+    ...config,
+    moduleNameMapper: {
+      '^~(.*)$': '<rootDir>/src/$1',
+      axios: 'axios/dist/node/axios.cjs',
+    },
+  }),
 }
