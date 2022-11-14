@@ -41,7 +41,7 @@ test('should show login form', () => {
   expect(submitBtn.textContent).toBe('Entrar')
 })
 
-test('should login user when submit form with correct credentials', async () => {
+test('should login user and redirect when submit form with correct credentials', async () => {
   // ARRANGE
   const credentials = {
     email: 'zam@zam.com',
@@ -93,7 +93,7 @@ test('should login user when submit form with correct credentials', async () => 
   expect(screen.getByText(responseData.user.name)).toBeInTheDocument()
 })
 
-test('should not redirect user when submit form with wrong credentials', async () => {
+test('should not redirect user when API returns', async () => {
   // ARRANGE
   const credentials = {
     email: 'errado@zam.com',
