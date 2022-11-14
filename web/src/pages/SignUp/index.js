@@ -23,7 +23,6 @@ export const SignUp = () => {
   const onSubmit = async values => {
     try {
       const res = await axios.post('http://localhost:9901/users', values)
-      console.log(res)
       setAuth({ user: res.data })
       navigate('/')
     } catch (error) {

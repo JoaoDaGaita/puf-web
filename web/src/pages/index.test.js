@@ -5,7 +5,7 @@ import * as React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 //import { BrowserRouter as Router } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
-//import { createMemoryHistory } from 'history'
+import { createMemoryHistory } from 'history'
 
 import { Theme } from '~/components/Theme'
 import { AuthProvider } from '~/components/modules'
@@ -13,6 +13,10 @@ import { AuthProvider } from '~/components/modules'
 import { App } from './'
 
 jest.mock('axios')
+
+beforeEach(() => {
+  window.localStorage.clear()
+})
 
 test('should show login form', () => {
   // ARRANGE
@@ -87,4 +91,45 @@ test('should login user when submit form with correct credentials', async () => 
     })
   )
   expect(screen.getByText(responseData.user.name)).toBeInTheDocument()
+})
+
+test('should not redirect user when submit form with wrong credentials', async () => {
+  // ARRANGE
+  const credentials = {
+    email: 'errado@zam.com',
+    password: '123123',
+  }
+
+  axios.get.mockImplementation(() =>
+    Promise.reject({
+      data: {},
+    })
+  )
+
+  const history = createMemoryHistory()
+
+  render(
+    <Theme>
+      <AuthProvider>
+        <App history={history} />
+      </AuthProvider>
+    </Theme>
+  )
+  // ACT
+  const emailInput = screen.getByLabelText('E-mail')
+  await userEvent.type(emailInput, credentials.email)
+
+  const passwordInput = screen.getByLabelText('Senha')
+  await userEvent.type(passwordInput, credentials.password)
+
+  const submitBtn = screen.getByRole('button')
+  await userEvent.click(submitBtn)
+
+  // ASSERT
+  await waitFor(() =>
+    expect(axios.get).toHaveBeenCalledWith('http://localhost:9901/login', {
+      auth: { password: credentials.password, username: credentials.email },
+    })
+  )
+  expect(submitBtn).toBeEnabled()
 })
